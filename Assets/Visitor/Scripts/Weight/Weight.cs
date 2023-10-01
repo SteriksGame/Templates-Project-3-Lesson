@@ -8,6 +8,8 @@ public class Weight : IDisposable
 
     private EnemyWeightVisitor _enemyWeightVisitor;
 
+    private const int MAX_WEIGHT_VALUE = 100;
+
     public Weight(IEnemySpawnNotifier enemySpawnNotifier, IEnemyDeathNotifier enemyDeathNotifier)
     {
         _enemySpawnNotifier = enemySpawnNotifier;
@@ -19,7 +21,7 @@ public class Weight : IDisposable
         _enemyWeightVisitor = new EnemyWeightVisitor();
     }
 
-    public int Volue => _enemyWeightVisitor.Volue;
+    public int Value => _enemyWeightVisitor.Value;
 
     public void Dispose()
     {
@@ -31,8 +33,10 @@ public class Weight : IDisposable
     public void OnEnemyChangeStatus(Enemy enemy)
     {
         _enemyWeightVisitor.Visit(enemy);
-        Debug.Log($"Вес героев: {Volue}");
+        Debug.Log($"Вес героев: {Value}");
     }
+
+    public bool IsMaxWeight() => Value > MAX_WEIGHT_VALUE;
 
     private class EnemyWeightVisitor : IEnemyVisitor
     {
@@ -40,15 +44,15 @@ public class Weight : IDisposable
         private const int ORK_WEIGHT = 10;
         private const int ROBOT_WEIGH = 15;
 
-        public int Volue { get; private set; }
+        public int Value { get; private set; }
 
         public void Visit(Enemy enemy) => Visit((dynamic)enemy);
 
-        public void Visit(Elf elf) => Volue = elf.IsDead ? Volue - ELF_WEIGHT : Volue + ELF_WEIGHT;
+        public void Visit(Elf elf) => Value = elf.IsDead ? Value - ELF_WEIGHT : Value + ELF_WEIGHT;
 
-        public void Visit(Ork ork) => Volue = ork.IsDead ? Volue - ORK_WEIGHT : Volue + ORK_WEIGHT;
+        public void Visit(Ork ork) => Value = ork.IsDead ? Value - ORK_WEIGHT : Value + ORK_WEIGHT;
 
-        public void Visit(Robot robot) => Volue = robot.IsDead ? Volue - ROBOT_WEIGH : Volue + ROBOT_WEIGH;
+        public void Visit(Robot robot) => Value = robot.IsDead ? Value - ROBOT_WEIGH : Value + ROBOT_WEIGH;
     }
 }
 

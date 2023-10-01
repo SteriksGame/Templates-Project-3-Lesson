@@ -15,7 +15,10 @@ public class Stat
 
     public int Power 
     { 
-        get { return _power; }
+        get 
+        { 
+            return _power; 
+        }
         private set
         {
             if(value < 0)
@@ -24,9 +27,13 @@ public class Stat
             _power = value;
         }
     }
+
     public int Intellect 
     {
-        get { return _intellect; }
+        get 
+        {
+            return _intellect; 
+        }
         private set
         {
             if (value < 0)
@@ -35,9 +42,13 @@ public class Stat
             _intellect = value;
         }
     }
+
     public int Agility 
     {
-        get { return _agility; }
+        get 
+        { 
+            return _agility; 
+        }
         private set
         {
             if (value < 0)

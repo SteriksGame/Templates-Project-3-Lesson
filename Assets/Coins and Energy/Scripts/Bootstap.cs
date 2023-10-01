@@ -30,6 +30,6 @@ public class Bootstap : MonoBehaviour
                 throw new ArgumentException(nameof(_iconConfigTypes));
         }
 
-        _iconInitializer.Initialized(iconFactory);
+        _iconInitializer.Initialize(iconFactory);
     }
 }

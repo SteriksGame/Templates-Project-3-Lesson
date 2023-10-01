@@ -8,7 +8,7 @@ public class IconViewSetup : MonoBehaviour
 
     private IconFactory _iconFactory;
 
-    public void Initialized(IconFactory iconFactory)
+    public void Initialize(IconFactory iconFactory)
     {
         _iconFactory = iconFactory;
 

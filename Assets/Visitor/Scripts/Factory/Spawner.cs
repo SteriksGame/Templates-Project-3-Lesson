@@ -18,8 +18,6 @@ public class Spawner : MonoBehaviour, IEnemyDeathNotifier, IEnemySpawnNotifier
 
     private Weight _weight;
 
-    private const int MAX_WEIGHT_VOLUME = 100;
-
     public void StartWork()
     {
         StopWork();
@@ -48,7 +46,7 @@ public class Spawner : MonoBehaviour, IEnemyDeathNotifier, IEnemySpawnNotifier
     {
         while (true)
         {
-            if (_weight.Volue > MAX_WEIGHT_VOLUME)
+            if (_weight.IsMaxWeight())
             {
                 StopWork();
                 break;

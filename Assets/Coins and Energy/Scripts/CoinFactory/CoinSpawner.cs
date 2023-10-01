@@ -62,10 +62,7 @@ public class CoinSpawner : MonoBehaviour
 
             _randomTry--;
         }
-        while (_coinsSpawned.Where(coin => 
-        coin.transform.position.x == spawnPosition.x &&
-        coin.transform.position.z == spawnPosition.z)
-        .Count() != 0);
+        while (IsPointOccupied(spawnPosition));
 
         Coin coin = _coinFactory.Get();
         coin.transform.position = spawnPosition;
@@ -77,4 +74,12 @@ public class CoinSpawner : MonoBehaviour
             Random.Range(MIN_VALUE_POS_SPAWNER, MAX_VALUE_POS_SPAWNER),
             Y_VALUE_POS_SPAWNER,
             Random.Range(MIN_VALUE_POS_SPAWNER, MAX_VALUE_POS_SPAWNER));
+
+    private bool IsPointOccupied(Vector3 position)
+    {
+        return _coinsSpawned.Where(coin =>
+        coin.transform.position.x == position.x &&
+        coin.transform.position.z == position.z)
+        .Count() != 0;
+    }
 }
